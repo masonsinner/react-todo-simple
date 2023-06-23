@@ -20,12 +20,18 @@ class ToDoCard extends React.Component<{}, ToDoCardState> {
     }));
   };
 
+  removeTask = (index: number) => {
+    this.setState((prevState) => ({
+      tasks: prevState.tasks.filter((_, i) => i !== index),
+    }));
+  };
+
   render() {
     const { tasks } = this.state;
     return (
       <div>
         <Form addTask={this.addTask} />
-        <ToDoDisplay tasks={tasks} />
+        <ToDoDisplay tasks={tasks} removeTask={this.removeTask} />
       </div>
     );
   }
